@@ -73,7 +73,9 @@ def main(page: ft.Page):
                 "writeautomaticsub": want_auto_subs,
                 "subtitleslangs": [s.strip() for s in sub_langs.split(",") if s.strip()],
                 "subtitlesformat": "srt",
-                "sleep_interval_requests": 2,
+                "sleep_interval_requests": 3,
+                "sleep_interval_subtitles": 8,
+                "ignoreerrors": "only_download",
                 "progress_hooks": [progress_hook],
                 "logger": _YdlLogger(append_log),
             }
