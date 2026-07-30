@@ -1,0 +1,19 @@
+[project]
+name = "yt_downloader_app"
+version = "1.0.0"
+description = "محمّل يوتيوب مع ترجمة - تطبيق Flet"
+requires-python = ">=3.9"
+dependencies = [
+    "flet>=0.24.0",
+    "yt-dlp",
+]
+
+[tool.flet]
+org = "com.example"
+product = "YT Downloader"
+
+[tool.flet.android.permission]
+"android.permission.INTERNET" = true
+"android.permission.WRITE_EXTERNAL_STORAGE" = true
+"android.permission.READ_EXTERNAL_STORAGE" = true
+"android.permission.MANAGE_EXTERNAL_STORAGE" = true
