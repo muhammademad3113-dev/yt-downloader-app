@@ -47,7 +47,7 @@ def main(page: ft.Page):
     progress_ring = ft.ProgressRing(visible=False, width=20, height=20)
     status_text = ft.Text("", size=12)
 
-    download_btn = ft.ElevatedButton(text="ابدأ التحميل", icon=ft.icons.DOWNLOAD, width=400)
+    download_btn = ft.ElevatedButton(text="⬇ ابدأ التحميل", width=400)
 
     def append_log(line: str):
         log_box.value += line
