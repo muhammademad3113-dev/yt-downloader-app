@@ -3,7 +3,7 @@ import threading
 import flet as ft
 import yt_dlp
 
-DEFAULT_DIR = "/storage/emulated/0/Download/course"
+DEFAULT_DIR = "/storage/emulated/0/Download/yt downloader/"
 
 QUALITY_OPTIONS = {
     "أعلى جودة متوفرة بصوت (غالباً 720p)": "best[acodec!=none][vcodec!=none][ext=mp4]/best[acodec!=none][vcodec!=none]/best",
@@ -121,7 +121,7 @@ def main(page: ft.Page):
             os.makedirs(save_dir, exist_ok=True)
 
             is_playlist = False
-            if use_playlist_folders and ("list=" in url or "/playlist" in url or "/sets/" in url):
+            if use_playlist_folders:
                 try:
                     probe_opts = {
                         "quiet": True,
@@ -149,10 +149,6 @@ def main(page: ft.Page):
                 "subtitlesformat": "srt",
                 "sleep_interval_requests": 3,
                 "sleep_interval_subtitles": 8,
-                "retries": 10,
-                "fragment_retries": 10,
-                "file_access_retries": 5,
-                "retry_sleep_functions": {"http": lambda n: min(4 * (n + 1), 30)},
                 "progress_hooks": [progress_hook],
                 "logger": _YdlLogger(append_log),
             }
