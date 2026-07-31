@@ -121,7 +121,7 @@ def main(page: ft.Page):
             os.makedirs(save_dir, exist_ok=True)
 
             is_playlist = False
-            if use_playlist_folders:
+            if use_playlist_folders and ("list=" in url or "/playlist" in url or "/sets/" in url):
                 try:
                     probe_opts = {
                         "quiet": True,
@@ -149,6 +149,10 @@ def main(page: ft.Page):
                 "subtitlesformat": "srt",
                 "sleep_interval_requests": 3,
                 "sleep_interval_subtitles": 8,
+                "retries": 10,
+                "fragment_retries": 10,
+                "file_access_retries": 5,
+                "retry_sleep_functions": {"http": lambda n: min(4 * (n + 1), 30)},
                 "progress_hooks": [progress_hook],
                 "logger": _YdlLogger(append_log),
             }
