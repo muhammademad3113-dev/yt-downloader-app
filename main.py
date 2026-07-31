@@ -6,10 +6,10 @@ import yt_dlp
 DEFAULT_DIR = "/storage/emulated/0/Download/course"
 
 QUALITY_OPTIONS = {
-    "أعلى جودة متوفرة بصوت (غالباً 720p)": "best[acodec!=none][vcodec!=none][ext=mp4]/best[acodec!=none][vcodec!=none]",
-    "720p (بصوت)": "best[height<=720][acodec!=none][vcodec!=none][ext=mp4]/best[height<=720][acodec!=none][vcodec!=none]",
-    "480p (بصوت)": "best[height<=480][acodec!=none][vcodec!=none][ext=mp4]/best[height<=480][acodec!=none][vcodec!=none]",
-    "360p (بصوت، أضمن جودة)": "best[height<=360][acodec!=none][vcodec!=none][ext=mp4]/best[height<=360][acodec!=none][vcodec!=none]",
+    "أعلى جودة متوفرة بصوت (غالباً 720p)": "best[acodec!=none][vcodec!=none][ext=mp4]/best[acodec!=none][vcodec!=none]/best",
+    "720p (بصوت)": "best[height<=720][acodec!=none][vcodec!=none][ext=mp4]/best[height<=720][acodec!=none][vcodec!=none]/best[height<=720]/best",
+    "480p (بصوت)": "best[height<=480][acodec!=none][vcodec!=none][ext=mp4]/best[height<=480][acodec!=none][vcodec!=none]/best[height<=480]/best",
+    "360p (بصوت، أضمن جودة)": "best[height<=360][acodec!=none][vcodec!=none][ext=mp4]/best[height<=360][acodec!=none][vcodec!=none]/best[height<=360]/best",
 }
 
 THEME_COLORS = {
@@ -149,12 +149,13 @@ def main(page: ft.Page):
                 "subtitlesformat": "srt",
                 "sleep_interval_requests": 3,
                 "sleep_interval_subtitles": 8,
-                "ignoreerrors": "only_download",
                 "progress_hooks": [progress_hook],
                 "logger": _YdlLogger(append_log),
             }
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([url])
+                result_code = ydl.download([url])
+            if result_code != 0:
+                raise RuntimeError("التحميل لم يكتمل (راجع رسائل السجل أعلاه لمعرفة السبب الحقيقي).")
             append_log("\n[DONE] تم الانتهاء بنجاح ✅\n")
             status_text.value = "تم الانتهاء بنجاح ✅"
         except Exception as e:
