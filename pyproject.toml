@@ -10,7 +10,7 @@ dependencies = [
 
 [tool.flet]
 org = "com.example"
-product = "YT Downloader"
+product = "COPA X"
 
 [tool.flet.android.permission]
 "android.permission.INTERNET" = true
