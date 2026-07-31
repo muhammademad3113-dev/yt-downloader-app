@@ -6,10 +6,10 @@ import yt_dlp
 DEFAULT_DIR = "/storage/emulated/0/Download/course"
 
 QUALITY_OPTIONS = {
-    "1080p": "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/best",
-    "720p": "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/best",
-    "480p": "bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=mp4]/best",
-    "أفضل جودة متاحة": "bestvideo+bestaudio/best",
+    "أعلى جودة متوفرة بصوت (غالباً 720p)": "best[acodec!=none][vcodec!=none][ext=mp4]/best[acodec!=none][vcodec!=none]",
+    "720p (بصوت)": "best[height<=720][acodec!=none][vcodec!=none][ext=mp4]/best[height<=720][acodec!=none][vcodec!=none]",
+    "480p (بصوت)": "best[height<=480][acodec!=none][vcodec!=none][ext=mp4]/best[height<=480][acodec!=none][vcodec!=none]",
+    "360p (بصوت، أضمن جودة)": "best[height<=360][acodec!=none][vcodec!=none][ext=mp4]/best[height<=360][acodec!=none][vcodec!=none]",
 }
 
 
@@ -17,7 +17,7 @@ def main(page: ft.Page):
     page.title = "محمّل يوتيوب + ترجمة"
     page.scroll = ft.ScrollMode.AUTO
     page.padding = 16
-    page.rtl = True  # واجهة من اليمين لليسار
+    page.rtl = True
 
     url_field = ft.TextField(label="رابط الفيديو / البلاي ليست", text_align=ft.TextAlign.RIGHT)
 
@@ -68,7 +68,7 @@ def main(page: ft.Page):
             os.makedirs(save_dir, exist_ok=True)
             ydl_opts = {
                 "format": fmt,
-                "outtmpl": os.path.join(save_dir, "video %(playlist_index)s/%(title)s.%(ext)s"),
+                "outtmpl": os.path.join(save_dir, "%(title)s.%(ext)s"),
                 "writesubtitles": True,
                 "writeautomaticsub": want_auto_subs,
                 "subtitleslangs": [s.strip() for s in sub_langs.split(",") if s.strip()],
