@@ -36,7 +36,9 @@ jobs:
         run: pip install flet
 
       - name: Build APK
-        run: yes | flet build apk --verbose
+        run: |
+          set +o pipefail
+          yes | flet build apk --verbose
 
       - name: Locate APK file
         id: find_apk
