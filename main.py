@@ -354,12 +354,26 @@ def main(page: ft.Page):
 
     tabs = ft.Tabs(
         selected_index=0,
-        animation_duration=200,
-        tabs=[
-            ft.Tab(tab_content=ft.Text("⬇ تحميل"), content=download_tab_content),
-            ft.Tab(tab_content=ft.Text("⚙ إعدادات"), content=settings_tab_content),
-        ],
+        length=2,
         expand=True,
+        content=ft.Column(
+            expand=True,
+            controls=[
+                ft.TabBar(
+                    tabs=[
+                        ft.Tab(label="⬇ تحميل"),
+                        ft.Tab(label="⚙ إعدادات"),
+                    ],
+                ),
+                ft.TabBarView(
+                    expand=True,
+                    controls=[
+                        download_tab_content,
+                        settings_tab_content,
+                    ],
+                ),
+            ],
+        ),
     )
 
     page.appbar = ft.AppBar(
