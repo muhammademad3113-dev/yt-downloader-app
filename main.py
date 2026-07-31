@@ -3,7 +3,7 @@ import threading
 import flet as ft
 import yt_dlp
 
-DEFAULT_DIR = "/storage/emulated/0/Download/yt downloader/"
+DEFAULT_DIR = "/storage/emulated/0/COPA X/"
 
 QUALITY_OPTIONS = {
     "أعلى جودة متوفرة بصوت (غالباً 720p)": "best[acodec!=none][vcodec!=none][ext=mp4]/best[acodec!=none][vcodec!=none]/best",
