@@ -11,6 +11,7 @@ dependencies = [
 [tool.flet]
 org = "com.example"
 product = "COPA X"
+icon ="icon.png"
 
 [tool.flet.android.permission]
 "android.permission.INTERNET" = true
