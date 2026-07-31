@@ -356,8 +356,8 @@ def main(page: ft.Page):
         selected_index=0,
         animation_duration=200,
         tabs=[
-            ft.Tab(text="⬇ تحميل", content=download_tab_content),
-            ft.Tab(text="⚙ إعدادات", content=settings_tab_content),
+            ft.Tab(tab_content=ft.Text("⬇ تحميل"), content=download_tab_content),
+            ft.Tab(tab_content=ft.Text("⚙ إعدادات"), content=settings_tab_content),
         ],
         expand=True,
     )
